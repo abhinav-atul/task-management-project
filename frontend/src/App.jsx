@@ -6,6 +6,8 @@ import TeamManagement from './pages/TeamManagement';
 import TeamDetail from './pages/TeamDetail';
 import './App.css';
 import './components/styles.css';
+import { AuthProvider } from './context/AuthContext';
+import ProtectedRoute from './auth/ProtectedRoute';
 
 function App() {
   return (
