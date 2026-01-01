@@ -13,43 +13,48 @@ const Header = () => {
   };
 
   return (
-    <header className="header">
-      <div className="header-left">
-        <h1 className="page-title">Dashboard</h1>
+    // FIX: Added bg-white and text-slate-800 to ensure visibility
+    <header className="flex items-center justify-between px-8 py-4 bg-white border-b border-slate-200">
+      <div className="flex items-center">
+        <h1 className="text-xl font-bold text-slate-900">Dashboard</h1>
       </div>
       
-      <div className="header-right">
-        <div className="search-bar">
-          <Search size={20} className="search-icon" />
+      <div className="flex items-center gap-4">
+        <div className="flex items-center px-3 py-2 bg-slate-100 rounded-lg">
+          <Search size={20} className="text-slate-400" />
           <input 
             type="text" 
             placeholder="Search..." 
-            className="search-input"
+            className="ml-2 bg-transparent border-none focus:outline-none text-slate-700 placeholder-slate-400 w-48"
           />
         </div>
         
-        <button className="icon-button">
+        <button className="p-2 text-slate-600 hover:bg-slate-100 rounded-lg transition-colors">
           <Bell size={20} />
         </button>
 
-        {isAuthenticated ? (
-          <>
-            <div className="user-profile">
-              <div className="user-avatar">
+        {isAuthenticated && (
+          <div className="flex items-center gap-3 pl-4 border-l border-slate-200">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded-full bg-slate-200 overflow-hidden">
                 <img 
                   src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&h=32&fit=crop&crop=face" 
                   alt={user?.name || 'User'} 
-                  className="avatar-image"
+                  className="w-full h-full object-cover"
                 />
               </div>
-              <div className="user-info">
-                <span className="user-name">{user?.name || 'User'}</span>
-                <span className="user-email">{user?.email || ''}</span>
+              <div className="hidden md:block text-sm">
+                <p className="font-medium text-slate-700">{user?.name || 'User'}</p>
               </div>
             </div>
-            <button className="icon-button" onClick={handleLogout} style={{marginLeft:8}}>Logout</button>
-          </>
-        ) : null}
+            <button 
+              onClick={handleLogout} 
+              className="text-sm font-medium text-red-600 hover:text-red-700 ml-2"
+            >
+              Logout
+            </button>
+          </div>
+        )}
       </div>
     </header>
   );
